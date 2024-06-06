@@ -27,7 +27,7 @@ box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 
     display: flex;
     align-items: center;
     border-radius: 10px;
-    border: 2px solid rgb(236, 225, 120);
+    border: 2px solid #ffbc00;
     overflow: hidden;
     background-color: white;
 }
@@ -44,5 +44,5 @@ box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 
     font-size:25px;
     padding: 10px;
     cursor: pointer;
-    background-color: rgb(241, 207, 11);
+    background-color:#ffbc00;
 }
