@@ -8,13 +8,15 @@ import sunIcon from "./assets/sunny.png"
 import { FaSearch } from "react-icons/fa";
 
 
-const WeatherDetails = ({ icon }) => {
-
+const WeatherDetails = ({ icon , temp , city , country }) => {
     return (
         <>
             <div className="image">
                 <img src={icon} style={{ width: 250, height: 250,  padding:10}} alt="image" />
             </div>
+            <div>{temp}</div>
+            <div>{city}</div>
+            <div>{country}</div>
         </>
     )
 
@@ -35,7 +37,7 @@ const Weather = () => {
                 <input className="input-search" type="text" placeholder="Search City" />
                 <FaSearch className="search-icon" />
             </div>
-            <WeatherDetails icon={icon} />
+            <WeatherDetails icon={icon} temp={temp} city={city} country={country} />
         </div>
     </>);
 }
