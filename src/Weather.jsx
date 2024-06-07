@@ -1,10 +1,24 @@
-// import freezeIcon from "./assets/black-freeze.jpg"
-// import snowIcon from "./assets/black-snow.jpg"
-// import cloudIcon from "./assets/cloudy.png"
-// import rainIcon from "./assets/rainy.jpg"
-import { useState } from "react";
+// import { AiOutlineSun } from "react-icons/ai";
+
+// import { FaSoundcloud } from "react-icons/fa";
+
+// import { BsCloudDrizzleFill } from "react-icons/bs";
+
+// import { BsFillCloudLightningRainFill } from "react-icons/bs";
+
+// import { BsCloudSnow } from "react-icons/bs";
+
+
+
+
+import freezeIcon from "./assets/black-freeze.jpg"
+import snowIcon from "./assets/black-snow.jpg"
+import cloudIcon from "./assets/cloudy.png"
+import rainIcon from "./assets/rainy.jpg"
+
 import sunIcon from "./assets/sunny.png"
-// import thunderIcon from "./assets/thunder.jpg"
+import thunderIcon from "./assets/thunder.jpg"
+import { useState } from "react";
 import { FaSearch } from "react-icons/fa";
 import { WiHumidity } from "react-icons/wi";
 import { GiWindpump } from "react-icons/gi";
@@ -40,7 +54,6 @@ const WeatherDetails = ({ icon, temp, city, country, lat, lon, humidityPer, wind
                     </div>
                     <div className="Humidity-data">
                         <div className="Humidity-percentage">
-                            
                         </div>
                         <div className="Humidity-text">
                             HUMIDITY
@@ -53,7 +66,6 @@ const WeatherDetails = ({ icon, temp, city, country, lat, lon, humidityPer, wind
                     </div>
                     <div className="Wind-data">
                         <div className="Wind-percentage">
-                           
                         </div>
                         <div className="Wind-text">
                             WIND
@@ -87,6 +99,27 @@ const Weather = () => {
     const [cityNotFound, setCityNotFound] = useState(false)
     const [isLoading, setIsLoading] = useState(false)
 
+
+    // weather icon details - image changing 
+
+    const weatherCode={
+        "01d":sunIcon,
+        "01n":sunIcon,
+        "02d":sunIcon,
+        "02n":cloudIcon,
+        "03d":cloudIcon,
+        "03n":cloudIcon,
+        "04d":freezeIcon,
+        "04n":freezeIcon,
+        "09d":rainIcon,
+        "09n":rainIcon,
+        "010d":thunderIcon,
+        "010n":thunderIcon,
+        "011d":snowIcon,
+        "011n":snowIcon,
+    }
+    // 
+    
     // Create async function for api method
     const search = async () => {
         setIsLoading(true);
@@ -109,7 +142,10 @@ const Weather = () => {
             setWindPer(data.wind.speed)
             setCity(data.name)
             setCountry(data.sys.country)
-
+            const weatherIconsGet = data.weather[0].icon;
+            setIcon(weatherCode[weatherIconsGet] || sunIcon  )
+            setCityNotFound(false)
+            
         } catch (error) {
             console.error("Error message occurred :", error.message)
 

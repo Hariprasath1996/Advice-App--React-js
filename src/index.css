@@ -147,7 +147,8 @@ body {
     font-weight: bold;
     font-size: large
 }
-.copy-right{
+
+.copy-right {
     display: flex;
     flex-direction: column;
     text-align: center;
@@ -155,9 +156,10 @@ body {
     margin-top: 30px;
     box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 1px 0px;
 }
-.designer{
-   color: #ffd901;
-   font-style: italic;
-   font-weight: 600;
-    
+
+.designer {
+    color: #ffd901;
+    font-style: italic;
+    font-weight: 600;
+
 }
