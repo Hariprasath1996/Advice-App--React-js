@@ -162,7 +162,7 @@ body {
     font-style: italic;
     font-weight: 600;
 }
-.message{
+.loading-message,.cityNotFound,.error-message{
     display: flex;
     flex-direction: column;
     text-align: center;

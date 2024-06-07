@@ -1,14 +1,3 @@
-// import { AiOutlineSun } from "react-icons/ai";
-
-// import { FaSoundcloud } from "react-icons/fa";
-
-// import { BsCloudDrizzleFill } from "react-icons/bs";
-
-// import { BsFillCloudLightningRainFill } from "react-icons/bs";
-
-// import { BsCloudSnow } from "react-icons/bs";
-
-
 
 import moonFreeze from "./assets/moonFreeze.png";
 import morn from "./assets/morn.png";
@@ -98,16 +87,15 @@ const Weather = () => {
     const [lon, setLon] = useState(0)
     const [humidityPer, setHumidityPer] = useState(0)
     const [windyPer, setWindPer] = useState(0)
+
     // user choice set variables - when they entered values in search box 
-    const [text, setText] = useState("")
+    const [text, setText] = useState("Erode")
     const [cityNotFound, setCityNotFound] = useState(false)
     const [isLoading, setIsLoading] = useState(false)
-    const [error, setError] = useState(null)
+    const [error, setError] = useState()
 
 
     // weather icon details - image changing
-
-
     const weatherCode = {
         "01d": sunny,
         "01n": nytFreeze,
@@ -148,11 +136,11 @@ const Weather = () => {
             setCity(data.name)
             setCountry(data.sys.country)
             const weatherIconsGet = data.weather[0].icon;
-            setIcon(weatherCode[weatherIconsGet] || sunIcon)
+            setIcon(weatherCode[weatherIconsGet])
             setCityNotFound(false)
         } catch (error) {
-            console.error("Error message occurred :", error.message)
-            setError("an error occurred while fetching weather data")
+            console.error("Error message occurred :", error.message);
+            setError("An Error Occurred While Fetching Weather Data")
         } finally {
             setIsLoading(false);
 
@@ -184,16 +172,14 @@ const Weather = () => {
                     search()
                 }} />
             </div>
-        
-            <div className="message">
-                {isLoading && <div className="loading-message">Loading ...</div>}
-                {cityNotFound && <div className="cityNotFound">City Not Found</div>}
-                {error && <div className="error-message">{error}</div>}
-            </div>
-                {/* passing a created component and sent props here  */}
-            { !isLoading && !cityNotFound &&   <WeatherDetails icon={icon} temp={temp} city={city} country={country} lat={lat} lon={lon} humidityPer={humidityPer} windyPer={windyPer} />}
+            {isLoading && <div className="loading-message">Loading ...</div>}
+            {cityNotFound && <div className="cityNotFound">City Not Found</div>}
+
+            {/* passing a created component and sent props here  */}
+            {!isLoading && !cityNotFound && <WeatherDetails icon={icon} temp={temp} city={city} country={country} lat={lat} lon={lon} humidityPer={humidityPer} windyPer={windyPer} />}
             <div className="copy-right">
-                <h2>Designed By <span className="designer">Hariprasath</span> </h2>
+                {error && <div className="error-message">{error}</div>}
+                <h2>Designed By <span className="designer">HariPrasath</span> </h2>
             </div>
         </div>
 
