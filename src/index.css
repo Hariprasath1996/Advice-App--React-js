@@ -120,15 +120,44 @@ body {
     justify-content: space-between;
     padding: 10px;
 }
-.Humidity-container,.Wind-container{
+
+.Humidity-container,
+.Wind-container {
     display: flex;
     flex-direction: column;
     text-align: center;
     gap: 10px;
 }
-.Humidity-icon,.Wind-icon{
-    color: #ffd901;
-    font-size: xxx-large;
+
+.Humidity-icon,
+.Wind-icon {
+    color: #01b7ff;
+    font-size: xx-large;
+    padding-top: 5px;
 }
 
-
+.Humidity-data,
+.Wind-data {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    gap: 10px;
+    margin-bottom: 5px;
+    color: #04393d;
+    font-weight: bold;
+    font-size: large
+}
+.copy-right{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    color: #04393d;
+    margin-top: 30px;
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 1px 0px;
+}
+.designer{
+   color: #ffd901;
+   font-style: italic;
+   font-weight: 600;
+    
+}
