@@ -22,10 +22,7 @@ import sunFreeze from "./assets/sunFreeze.png"
 import sunnySmile from "./assets/sunnySmile.png"
 import sunny from "./assets/sunny.png"
 import thunder from "./assets/thunder.png"
-
-
-
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FaSearch } from "react-icons/fa";
 import { WiHumidity } from "react-icons/wi";
 import { GiWindpump } from "react-icons/gi";
@@ -90,13 +87,13 @@ const WeatherDetails = ({ icon, temp, city, country, lat, lon, humidityPer, wind
 const Weather = () => {
     // create api key here 
 
-    let apiKey = "95d7bd55b90e3900ccf2c9ccf92f8532"
+    let apiKey = "cab9954e5bc84fcf27f139f6e07fbd25"
 
     // create state variables
-    const [icon, setIcon] = useState(sunnySmile)
+    const [icon, setIcon] = useState()
     const [temp, setTemp] = useState(0)
     const [city, setCity] = useState("")
-    const [country, setCountry] = useState("IND")
+    const [country, setCountry] = useState("")
     const [lat, setLat] = useState(0)
     const [lon, setLon] = useState(0)
     const [humidityPer, setHumidityPer] = useState(0)
@@ -105,34 +102,34 @@ const Weather = () => {
     const [text, setText] = useState("")
     const [cityNotFound, setCityNotFound] = useState(false)
     const [isLoading, setIsLoading] = useState(false)
+    const [error, setError] = useState(null)
 
 
     // weather icon details - image changing
-    
 
-    const weatherCode={
-        "01d":sunny,
+
+    const weatherCode = {
+        "01d": sunny,
         "01n": nytFreeze,
-        "02d":sunnySmile,
-        "02n":nytFreeze,
-        "03d":snooze,
-        "03n":snooze,
-        "04d":sunFreeze,
-        "04n":moonFreeze,
-        "09d":nytRainy,
-        "09n":nytFreeze,
-        "010d":mornRain,
-        "010n":nytRainy,
-        "011d":thunder,
-        "011n":thunder,
+        "02d": sunnySmile,
+        "02n": nytFreeze,
+        "03d": morn,
+        "03n": snooze,
+        "04d": sunFreeze,
+        "04n": moonFreeze,
+        "09d": nytRainy,
+        "09n": nytFreeze,
+        "010d": mornRain,
+        "010n": rainy,
+        "011d": moonCloudy,
+        "011n": thunder,
     }
     // 
-    
+
     // Create async function for api method
     const search = async () => {
         setIsLoading(true);
         let url = `https://api.openweathermap.org/data/2.5/weather?q=${text}&appid=${apiKey}&units=Metric`
-        // 95d7bd55b90e3900ccf2c9ccf92f8532
         try {
             let res = await fetch(url);
             let data = await res.json();
@@ -151,12 +148,11 @@ const Weather = () => {
             setCity(data.name)
             setCountry(data.sys.country)
             const weatherIconsGet = data.weather[0].icon;
-            setIcon(weatherCode[weatherIconsGet] || sunIcon  )
+            setIcon(weatherCode[weatherIconsGet] || sunIcon)
             setCityNotFound(false)
-            
         } catch (error) {
             console.error("Error message occurred :", error.message)
-
+            setError("an error occurred while fetching weather data")
         } finally {
             setIsLoading(false);
 
@@ -172,6 +168,9 @@ const Weather = () => {
             search();
         }
     }
+    useEffect(function () {
+        search()
+    }, [])
 
 
 
@@ -185,9 +184,14 @@ const Weather = () => {
                     search()
                 }} />
             </div>
-            {/* passing a created component and sent props here  */}
-
-            <WeatherDetails icon={icon} temp={temp} city={city} country={country} lat={lat} lon={lon} humidityPer={humidityPer} windyPer={windyPer} />
+        
+            <div className="message">
+                {isLoading && <div className="loading-message">Loading ...</div>}
+                {cityNotFound && <div className="cityNotFound">City Not Found</div>}
+                {error && <div className="error-message">{error}</div>}
+            </div>
+                {/* passing a created component and sent props here  */}
+            { !isLoading && !cityNotFound &&   <WeatherDetails icon={icon} temp={temp} city={city} country={country} lat={lat} lon={lon} humidityPer={humidityPer} windyPer={windyPer} />}
             <div className="copy-right">
                 <h2>Designed By <span className="designer">Hariprasath</span> </h2>
             </div>
