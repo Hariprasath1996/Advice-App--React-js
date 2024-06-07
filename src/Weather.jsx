@@ -10,14 +10,21 @@
 
 
 
+import moonFreeze from "./assets/moonFreeze.png";
+import morn from "./assets/morn.png";
+import moonCloudy from "./assets/moonCloudy.png";
+import mornRain from "./assets/mornRain.png"
+import nytFreeze from "./assets/nytFreeze.png"
+import nytRainy from "./assets/nytRainy.png"
+import rainy from "./assets/rainy.png"
+import snooze from "./assets/snooze.png"
+import sunFreeze from "./assets/sunFreeze.png"
+import sunnySmile from "./assets/sunnySmile.png"
+import sunny from "./assets/sunny.png"
+import thunder from "./assets/thunder.png"
 
-import freezeIcon from "./assets/black-freeze.jpg"
-import snowIcon from "./assets/black-snow.jpg"
-import cloudIcon from "./assets/cloudy.png"
-import rainIcon from "./assets/rainy.jpg"
 
-import sunIcon from "./assets/sunny.png"
-import thunderIcon from "./assets/thunder.jpg"
+
 import { useState } from "react";
 import { FaSearch } from "react-icons/fa";
 import { WiHumidity } from "react-icons/wi";
@@ -86,7 +93,7 @@ const Weather = () => {
     let apiKey = "95d7bd55b90e3900ccf2c9ccf92f8532"
 
     // create state variables
-    const [icon, setIcon] = useState(sunIcon)
+    const [icon, setIcon] = useState(sunnySmile)
     const [temp, setTemp] = useState(0)
     const [city, setCity] = useState("")
     const [country, setCountry] = useState("IND")
@@ -100,23 +107,24 @@ const Weather = () => {
     const [isLoading, setIsLoading] = useState(false)
 
 
-    // weather icon details - image changing 
+    // weather icon details - image changing
+    
 
     const weatherCode={
-        "01d":sunIcon,
-        "01n":sunIcon,
-        "02d":sunIcon,
-        "02n":cloudIcon,
-        "03d":cloudIcon,
-        "03n":cloudIcon,
-        "04d":freezeIcon,
-        "04n":freezeIcon,
-        "09d":rainIcon,
-        "09n":rainIcon,
-        "010d":thunderIcon,
-        "010n":thunderIcon,
-        "011d":snowIcon,
-        "011n":snowIcon,
+        "01d":sunny,
+        "01n": nytFreeze,
+        "02d":sunnySmile,
+        "02n":nytFreeze,
+        "03d":snooze,
+        "03n":snooze,
+        "04d":sunFreeze,
+        "04n":moonFreeze,
+        "09d":nytRainy,
+        "09n":nytFreeze,
+        "010d":mornRain,
+        "010n":nytRainy,
+        "011d":thunder,
+        "011n":thunder,
     }
     // 
     
