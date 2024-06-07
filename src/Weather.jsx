@@ -22,12 +22,12 @@ const WeatherDetails = ({ icon, temp, city, country ,lat,long }) => {
             <div className="country">{country}</div>
             <div className="cord">
                 <div className="latitude">
-                    <span>latitude</span>
-                    <span>{lat}</span>
+                    <span className="lat-name">latitude</span>
+                    <span className="lat-value" >{lat}</span>
                 </div>
                 <div className="longitude">
-                    <span>longitude</span>
-                    <span>{long}</span>
+                    <span className="long-name">longitude</span>
+                    <span className="long-value">{long}</span>
                 </div>
             </div>
         </>
